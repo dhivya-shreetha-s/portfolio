@@ -8,53 +8,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Cyberpunk dark theme with neon accents */
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    /* Light theme */
+    --background: 0 0% 98%;
+    --foreground: 240 10% 10%;
 
-    --card: 240 10% 8%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
 
-    --popover: 240 10% 8%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
 
-    --primary: 189 94% 55%;
-    --primary-foreground: 240 10% 3.9%;
+    --primary: 189 94% 45%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 280 100% 70%;
-    --secondary-foreground: 0 0% 98%;
+    --secondary: 280 100% 60%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 10% 15%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted: 240 10% 90%;
+    --muted-foreground: 240 5% 40%;
 
-    --accent: 280 100% 70%;
-    --accent-foreground: 0 0% 98%;
+    --accent: 280 100% 60%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 240 10% 15%;
-    --input: 240 10% 15%;
-    --ring: 189 94% 55%;
+    --border: 240 10% 85%;
+    --input: 240 10% 85%;
+    --ring: 189 94% 45%;
 
     --radius: 0.75rem;
 
     /* Custom gradient colors */
-    --gradient-start: 189 94% 55%;
-    --gradient-end: 280 100% 70%;
+    --gradient-start: 189 94% 45%;
+    --gradient-end: 280 100% 60%;
     
     /* Glow effects */
-    --glow-primary: 189 94% 55%;
-    --glow-secondary: 280 100% 70%;
+    --glow-primary: 189 94% 45%;
+    --glow-secondary: 280 100% 60%;
 
-    --sidebar-background: 240 10% 5%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 189 94% 55%;
-    --sidebar-primary-foreground: 240 10% 3.9%;
-    --sidebar-accent: 240 10% 12%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 240 10% 15%;
-    --sidebar-ring: 189 94% 55%;
+    --sidebar-background: 0 0% 95%;
+    --sidebar-foreground: 240 10% 10%;
+    --sidebar-primary: 189 94% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 10% 92%;
+    --sidebar-accent-foreground: 240 10% 10%;
+    --sidebar-border: 240 10% 85%;
+    --sidebar-ring: 189 94% 45%;
   }
 
   .dark {
@@ -123,15 +123,29 @@ All colors MUST be HSL.
 
   /* Glass morphism */
   .glass {
-    background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid hsl(var(--border));
+  }
+  
+  .dark .glass {
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  :root .glass {
+    background: rgba(0, 0, 0, 0.05);
   }
 
   .glass-strong {
-    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid hsl(var(--border));
+  }
+  
+  .dark .glass-strong {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  :root .glass-strong {
+    background: rgba(0, 0, 0, 0.08);
   }
 
   /* Glow effects */

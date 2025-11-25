@@ -1,17 +1,24 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { NavLink } from './NavLink';
 import { Menu, X } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const navItems = [
-  { name: 'Home', path: '/' },
-  { name: 'About', path: '/about' },
-  { name: 'Skills', path: '/skills' },
-  { name: 'Projects', path: '/projects' },
-  { name: 'Certificates', path: '/certificates' },
-  { name: 'Education', path: '/education' },
-  { name: 'Contact', path: '/contact' },
+  { name: 'Home', id: 'home' },
+  { name: 'About', id: 'about' },
+  { name: 'Skills', id: 'skills' },
+  { name: 'Projects', id: 'projects' },
+  { name: 'Certificates', id: 'certificates' },
+  { name: 'Education', id: 'education' },
+  { name: 'Contact', id: 'contact' },
 ];
+
+const scrollToSection = (id: string) => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+};
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,33 +41,33 @@ const Navigation = () => {
           </motion.div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navItems.map((item, index) => (
-              <motion.div
-                key={item.path}
+              <motion.button
+                key={item.id}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index }}
+                onClick={() => scrollToSection(item.id)}
+                className="text-foreground hover:text-primary transition-colors duration-300 relative group"
               >
-                <NavLink
-                  to={item.path}
-                  className="text-foreground hover:text-primary transition-colors duration-300 relative group"
-                  activeClassName="text-primary"
-                >
-                  {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-                </NavLink>
-              </motion.div>
+                {item.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+              </motion.button>
             ))}
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-foreground hover:text-primary transition-colors"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -74,15 +81,16 @@ const Navigation = () => {
             >
               <div className="flex flex-col gap-4 py-4">
                 {navItems.map((item) => (
-                  <NavLink
-                    key={item.path}
-                    to={item.path}
-                    onClick={() => setIsOpen(false)}
-                    className="text-foreground hover:text-primary transition-colors duration-300"
-                    activeClassName="text-primary"
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      scrollToSection(item.id);
+                      setIsOpen(false);
+                    }}
+                    className="text-foreground hover:text-primary transition-colors duration-300 text-left"
                   >
                     {item.name}
-                  </NavLink>
+                  </button>
                 ))}
               </div>
             </motion.div>
