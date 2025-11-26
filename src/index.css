@@ -128,7 +128,7 @@ All colors MUST be HSL.
   }
   
   .dark .glass {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.08);
   }
   
   :root .glass {
@@ -141,7 +141,7 @@ All colors MUST be HSL.
   }
   
   .dark .glass-strong {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
   }
   
   :root .glass-strong {
