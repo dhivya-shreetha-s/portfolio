@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
-import { ArrowDown, Download, Github, Code, Palette, Rocket, Users, Mail, Linkedin, Twitter, ExternalLink } from 'lucide-react';
+import { ArrowDown, Download, Github, Code, Palette, Rocket, Users, Mail, Linkedin, Twitter, ExternalLink, MapPin, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -29,6 +29,7 @@ const projects = [
     description: 'A full-stack web application with modern UI/UX',
     tags: ['React', 'Node.js', 'MongoDB'],
     github: 'https://github.com',
+    liveDemo: 'https://example.com',
     image: '/placeholder.svg',
   },
   {
@@ -36,6 +37,7 @@ const projects = [
     description: '3D interactive portfolio with Three.js',
     tags: ['Three.js', 'React', 'WebGL'],
     github: 'https://github.com',
+    liveDemo: 'https://example.com',
     image: '/placeholder.svg',
   },
   {
@@ -43,6 +45,7 @@ const projects = [
     description: 'E-commerce platform with payment integration',
     tags: ['Next.js', 'Stripe', 'PostgreSQL'],
     github: 'https://github.com',
+    liveDemo: 'https://example.com',
     image: '/placeholder.svg',
   },
 ];
@@ -142,7 +145,7 @@ const SinglePage = () => {
               </motion.h2>
               
               <motion.p 
-                className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-8"
+                className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto lg:mx-0 mb-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
@@ -240,20 +243,20 @@ const SinglePage = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
               >
-                <h2 className="text-3xl font-bold mb-4 text-primary">
+                <h2 className="text-3xl font-bold mb-4 text-foreground">
                   Hello! I'm a passionate developer
                 </h2>
-                <p className="text-lg text-muted-foreground mb-4">
+                <p className="text-lg text-foreground/80 mb-4">
                   With a strong foundation in both front-end and back-end technologies, 
                   I specialize in creating seamless, performant web applications that 
                   solve real-world problems.
                 </p>
-                <p className="text-lg text-muted-foreground mb-4">
+                <p className="text-lg text-foreground/80 mb-4">
                   My journey in tech started with a curiosity about how things work, 
                   which evolved into a passion for building innovative solutions that 
                   make a difference.
                 </p>
-                <p className="text-lg text-muted-foreground">
+                <p className="text-lg text-foreground/80">
                   When I'm not coding, you'll find me exploring new technologies, 
                   contributing to open-source projects, or sharing knowledge with the 
                   developer community.
@@ -273,10 +276,10 @@ const SinglePage = () => {
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -5 }}
                 >
-                  <Card className="glass-strong p-6 h-full hover:glow-primary transition-all duration-300">
+                  <Card className="glass-strong p-6 h-full hover:glow-primary transition-all duration-300 shadow-lg">
                     <value.icon className="text-primary mb-4" size={40} />
-                    <h4 className="text-xl font-bold mb-2">{value.title}</h4>
-                    <p className="text-muted-foreground">{value.description}</p>
+                    <h4 className="text-xl font-bold mb-2 text-foreground">{value.title}</h4>
+                    <p className="text-foreground/70">{value.description}</p>
                   </Card>
                 </motion.div>
               ))}
@@ -308,10 +311,14 @@ const SinglePage = () => {
                   transition={{ delay: index * 0.2 }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <Card className="glass-strong p-8 h-full hover:glow-primary transition-all duration-300">
-                    <h3 className="text-2xl font-bold mb-6 text-primary">
+                  <Card className="glass-strong p-8 h-full hover:glow-primary transition-all duration-300 shadow-lg">
+                    <h3 className="text-2xl font-bold mb-4 text-foreground">
                       {category.title}
                     </h3>
+                    
+                    {/* Horizontal Divider */}
+                    <div className="mb-6 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
+                    
                     <div className="flex flex-wrap gap-3">
                       {category.skills.map((skill, skillIndex) => (
                         <motion.div
@@ -320,7 +327,7 @@ const SinglePage = () => {
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
                           transition={{ delay: index * 0.2 + skillIndex * 0.1 }}
-                          whileHover={{ scale: 1.1 }}
+                          whileHover={{ scale: 1.15 }}
                         >
                           <Badge className="text-base py-2 px-4 glass hover:glow-secondary transition-all duration-300">
                             {skill}
@@ -360,13 +367,13 @@ const SinglePage = () => {
                   whileHover={{ scale: 1.05, rotateY: 5 }}
                   style={{ perspective: 1000 }}
                 >
-                  <Card className="glass-strong overflow-hidden h-full hover:glow-primary transition-all duration-300">
+                  <Card className="glass-strong overflow-hidden h-full hover:glow-primary transition-all duration-300 shadow-lg">
                     <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                       <span className="text-6xl opacity-30">🖼️</span>
                     </div>
                     <div className="p-6">
-                      <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-                      <p className="text-muted-foreground mb-4">{project.description}</p>
+                      <h3 className="text-2xl font-bold mb-3 text-foreground">{project.title}</h3>
+                      <p className="text-foreground/70 mb-4">{project.description}</p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.tags.map((tag) => (
                           <Badge key={tag} variant="secondary" className="glass">
@@ -374,13 +381,23 @@ const SinglePage = () => {
                           </Badge>
                         ))}
                       </div>
-                      <Button 
-                        className="w-full glass hover:glow-secondary"
-                        onClick={() => window.open(project.github, '_blank')}
-                      >
-                        <Github className="mr-2" size={18} />
-                        View on GitHub
-                      </Button>
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <Button 
+                          className="flex-1 glass hover:glow-secondary transition-all duration-300"
+                          onClick={() => window.open(project.github, '_blank')}
+                        >
+                          <Github className="mr-2" size={18} />
+                          Code
+                        </Button>
+                        <Button 
+                          variant="outline"
+                          className="flex-1 glass hover:glow-primary transition-all duration-300"
+                          onClick={() => window.open(project.liveDemo, '_blank')}
+                        >
+                          <ExternalLink className="mr-2" size={18} />
+                          Live Demo
+                        </Button>
+                      </div>
                     </div>
                   </Card>
                 </motion.div>
@@ -413,12 +430,12 @@ const SinglePage = () => {
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -5 }}
                 >
-                  <Card className="glass-strong p-6 h-full hover:glow-primary transition-all duration-300 cursor-pointer">
+                  <Card className="glass-strong p-6 h-full hover:glow-primary transition-all duration-300 cursor-pointer shadow-lg">
                     <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg mb-4 flex items-center justify-center">
                       <span className="text-5xl">🏆</span>
                     </div>
-                    <h3 className="text-lg font-bold mb-2">{cert.title}</h3>
-                    <p className="text-sm text-muted-foreground mb-1">{cert.issuer}</p>
+                    <h3 className="text-lg font-bold mb-2 text-foreground">{cert.title}</h3>
+                    <p className="text-sm text-foreground/70 mb-1">{cert.issuer}</p>
                     <p className="text-sm text-primary">{cert.year}</p>
                   </Card>
                 </motion.div>
@@ -464,13 +481,13 @@ const SinglePage = () => {
                            style={{ transform: 'translateX(-50%)' }} />
                     )}
                     
-                    <Card className="flex-1 glass-strong p-6 hover:glow-primary transition-all duration-300">
+                    <Card className="flex-1 glass-strong p-6 hover:glow-primary transition-all duration-300 shadow-lg">
                       <h3 className="text-2xl font-bold mb-2 text-primary">
                         {edu.degree}
                       </h3>
-                      <p className="text-lg mb-2">{edu.institution}</p>
-                      <p className="text-muted-foreground mb-3">{edu.year}</p>
-                      <p className="text-muted-foreground">{edu.description}</p>
+                      <p className="text-lg mb-2 text-foreground">{edu.institution}</p>
+                      <p className="text-foreground/70 mb-3">{edu.year}</p>
+                      <p className="text-foreground/70">{edu.description}</p>
                     </Card>
                   </div>
                 </motion.div>
@@ -493,95 +510,172 @@ const SinglePage = () => {
               Get In Touch
             </h1>
             
-            <div className="max-w-2xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
-                <Card className="glass-strong p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Name</label>
-                      <Input 
-                        type="text" 
-                        placeholder="Your name"
-                        className="glass-strong"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Email</label>
-                      <Input 
-                        type="email" 
-                        placeholder="your.email@example.com"
-                        className="glass-strong"
-                        required
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Message</label>
-                      <Textarea 
-                        placeholder="Your message..."
-                        rows={6}
-                        className="glass-strong resize-none"
-                        required
-                      />
-                    </div>
-                    
-                    <Button 
-                      type="submit" 
-                      className="w-full glass-strong hover:glow-primary transition-all duration-300 text-lg py-6"
-                    >
-                      <Mail className="mr-2" />
-                      Send Message
-                    </Button>
-                  </form>
-                  
-                  <div className="mt-8 pt-8 border-t border-border">
-                    <p className="text-center text-muted-foreground mb-4">
-                      Or reach out directly:
-                    </p>
-                    <div className="flex justify-center gap-4">
-                      <Button 
-                        variant="outline" 
-                        size="icon"
-                        className="glass hover:glow-primary"
-                        onClick={() => window.open('mailto:your.email@example.com')}
+            <div className="max-w-6xl mx-auto">
+              <Card className="glass-strong p-8 shadow-2xl border-primary/20">
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                  {/* Left: Contact Info Cards */}
+                  <motion.div
+                    className="lg:col-span-2 space-y-6"
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <div className="space-y-4">
+                      <h3 className="text-2xl font-bold text-foreground mb-6">Contact Information</h3>
+                      
+                      <motion.div 
+                        className="glass p-4 rounded-lg hover:glow-primary transition-all duration-300"
+                        whileHover={{ scale: 1.05 }}
                       >
-                        <Mail size={20} />
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="icon"
-                        className="glass hover:glow-primary"
-                        onClick={() => window.open('https://linkedin.com', '_blank')}
+                        <div className="flex items-start gap-4">
+                          <div className="p-3 rounded-lg bg-primary/20">
+                            <Mail className="text-primary" size={24} />
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-foreground mb-1">Email</h4>
+                            <a 
+                              href="mailto:your.email@example.com"
+                              className="text-foreground/70 hover:text-primary transition-colors"
+                            >
+                              your.email@example.com
+                            </a>
+                          </div>
+                        </div>
+                      </motion.div>
+
+                      <motion.div 
+                        className="glass p-4 rounded-lg hover:glow-primary transition-all duration-300"
+                        whileHover={{ scale: 1.05 }}
                       >
-                        <Linkedin size={20} />
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="icon"
-                        className="glass hover:glow-primary"
-                        onClick={() => window.open('https://github.com', '_blank')}
+                        <div className="flex items-start gap-4">
+                          <div className="p-3 rounded-lg bg-primary/20">
+                            <Phone className="text-primary" size={24} />
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-foreground mb-1">Phone</h4>
+                            <a 
+                              href="tel:+1234567890"
+                              className="text-foreground/70 hover:text-primary transition-colors"
+                            >
+                              +1 (234) 567-890
+                            </a>
+                          </div>
+                        </div>
+                      </motion.div>
+
+                      <motion.div 
+                        className="glass p-4 rounded-lg hover:glow-primary transition-all duration-300"
+                        whileHover={{ scale: 1.05 }}
                       >
-                        <Github size={20} />
-                      </Button>
-                      <Button 
-                        variant="outline" 
-                        size="icon"
-                        className="glass hover:glow-primary"
-                        onClick={() => window.open('https://twitter.com', '_blank')}
-                      >
-                        <Twitter size={20} />
-                      </Button>
+                        <div className="flex items-start gap-4">
+                          <div className="p-3 rounded-lg bg-primary/20">
+                            <MapPin className="text-primary" size={24} />
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-foreground mb-1">Location</h4>
+                            <p className="text-foreground/70">
+                              City, Country
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
                     </div>
-                  </div>
-                </Card>
-              </motion.div>
+
+                    {/* Social Links */}
+                    <div className="pt-6">
+                      <h4 className="font-bold text-foreground mb-4">Connect With Me</h4>
+                      <div className="flex gap-3">
+                        <Button 
+                          variant="outline" 
+                          size="icon"
+                          className="glass hover:glow-primary transition-all duration-300"
+                          onClick={() => window.open('https://linkedin.com', '_blank')}
+                        >
+                          <Linkedin size={20} />
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          size="icon"
+                          className="glass hover:glow-primary transition-all duration-300"
+                          onClick={() => window.open('https://github.com', '_blank')}
+                        >
+                          <Github size={20} />
+                        </Button>
+                        <Button 
+                          variant="outline" 
+                          size="icon"
+                          className="glass hover:glow-primary transition-all duration-300"
+                          onClick={() => window.open('https://twitter.com', '_blank')}
+                        >
+                          <Twitter size={20} />
+                        </Button>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Right: Message Form */}
+                  <motion.div
+                    className="lg:col-span-3"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                          <label className="block text-sm font-medium mb-2 text-foreground">Name</label>
+                          <Input 
+                            type="text" 
+                            placeholder="Your name"
+                            className="glass-strong"
+                            required
+                          />
+                        </div>
+                        
+                        <div>
+                          <label className="block text-sm font-medium mb-2 text-foreground">Email</label>
+                          <Input 
+                            type="email" 
+                            placeholder="your.email@example.com"
+                            className="glass-strong"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-foreground">Subject</label>
+                        <Input 
+                          type="text" 
+                          placeholder="Subject"
+                          className="glass-strong"
+                          required
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-sm font-medium mb-2 text-foreground">Message</label>
+                        <Textarea 
+                          placeholder="Your message..."
+                          rows={8}
+                          className="glass-strong resize-none"
+                          required
+                        />
+                      </div>
+                      
+                      <Button 
+                        type="submit" 
+                        className="w-full glass-strong hover:glow-primary transition-all duration-300 text-lg py-6"
+                      >
+                        <Mail className="mr-2" />
+                        Send Message
+                      </Button>
+                    </form>
+                  </motion.div>
+                </div>
+              </Card>
             </div>
           </motion.div>
         </div>
