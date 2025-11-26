@@ -145,7 +145,7 @@ const SinglePage = () => {
               </motion.h2>
               
               <motion.p 
-                className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto lg:mx-0 mb-8"
+                className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto lg:mx-0 mb-8"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.7 }}
@@ -246,17 +246,17 @@ const SinglePage = () => {
                 <h2 className="text-3xl font-bold mb-4 text-foreground">
                   Hello! I'm a passionate developer
                 </h2>
-                <p className="text-lg text-foreground/80 mb-4">
+                <p className="text-lg text-gray-200 mb-4">
                   With a strong foundation in both front-end and back-end technologies, 
                   I specialize in creating seamless, performant web applications that 
                   solve real-world problems.
                 </p>
-                <p className="text-lg text-foreground/80 mb-4">
+                <p className="text-lg text-gray-200 mb-4">
                   My journey in tech started with a curiosity about how things work, 
                   which evolved into a passion for building innovative solutions that 
                   make a difference.
                 </p>
-                <p className="text-lg text-foreground/80">
+                <p className="text-lg text-gray-200">
                   When I'm not coding, you'll find me exploring new technologies, 
                   contributing to open-source projects, or sharing knowledge with the 
                   developer community.
@@ -279,7 +279,7 @@ const SinglePage = () => {
                   <Card className="glass-strong p-6 h-full hover:glow-primary transition-all duration-300 shadow-lg">
                     <value.icon className="text-primary mb-4" size={40} />
                     <h4 className="text-xl font-bold mb-2 text-foreground">{value.title}</h4>
-                    <p className="text-foreground/70">{value.description}</p>
+                    <p className="text-gray-300">{value.description}</p>
                   </Card>
                 </motion.div>
               ))}
@@ -317,7 +317,7 @@ const SinglePage = () => {
                     </h3>
                     
                     {/* Horizontal Divider */}
-                    <div className="mb-6 h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-50" />
+                    <div className="mb-6 h-[2px] bg-gradient-to-r from-transparent via-primary/80 via-50% via-secondary/80 to-transparent opacity-60 rounded-full" />
                     
                     <div className="flex flex-wrap gap-3">
                       {category.skills.map((skill, skillIndex) => (
@@ -373,7 +373,7 @@ const SinglePage = () => {
                     </div>
                     <div className="p-6">
                       <h3 className="text-2xl font-bold mb-3 text-foreground">{project.title}</h3>
-                      <p className="text-foreground/70 mb-4">{project.description}</p>
+                      <p className="text-gray-300 mb-4">{project.description}</p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         {project.tags.map((tag) => (
                           <Badge key={tag} variant="secondary" className="glass">
@@ -435,7 +435,7 @@ const SinglePage = () => {
                       <span className="text-5xl">🏆</span>
                     </div>
                     <h3 className="text-lg font-bold mb-2 text-foreground">{cert.title}</h3>
-                    <p className="text-sm text-foreground/70 mb-1">{cert.issuer}</p>
+                    <p className="text-sm text-gray-300 mb-1">{cert.issuer}</p>
                     <p className="text-sm text-primary">{cert.year}</p>
                   </Card>
                 </motion.div>
@@ -486,8 +486,8 @@ const SinglePage = () => {
                         {edu.degree}
                       </h3>
                       <p className="text-lg mb-2 text-foreground">{edu.institution}</p>
-                      <p className="text-foreground/70 mb-3">{edu.year}</p>
-                      <p className="text-foreground/70">{edu.description}</p>
+                      <p className="text-gray-300 mb-3">{edu.year}</p>
+                      <p className="text-gray-300">{edu.description}</p>
                     </Card>
                   </div>
                 </motion.div>
@@ -536,7 +536,7 @@ const SinglePage = () => {
                             <h4 className="font-bold text-foreground mb-1">Email</h4>
                             <a 
                               href="mailto:your.email@example.com"
-                              className="text-foreground/70 hover:text-primary transition-colors"
+                              className="text-gray-300 hover:text-primary transition-colors"
                             >
                               your.email@example.com
                             </a>
@@ -556,7 +556,7 @@ const SinglePage = () => {
                             <h4 className="font-bold text-foreground mb-1">Phone</h4>
                             <a 
                               href="tel:+1234567890"
-                              className="text-foreground/70 hover:text-primary transition-colors"
+                              className="text-gray-300 hover:text-primary transition-colors"
                             >
                               +1 (234) 567-890
                             </a>
@@ -574,7 +574,7 @@ const SinglePage = () => {
                           </div>
                           <div>
                             <h4 className="font-bold text-foreground mb-1">Location</h4>
-                            <p className="text-foreground/70">
+                            <p className="text-gray-300">
                               City, Country
                             </p>
                           </div>
@@ -629,7 +629,7 @@ const SinglePage = () => {
                           <Input 
                             type="text" 
                             placeholder="Your name"
-                            className="glass-strong"
+                            className="glass-strong placeholder:text-gray-400"
                             required
                           />
                         </div>
@@ -639,7 +639,7 @@ const SinglePage = () => {
                           <Input 
                             type="email" 
                             placeholder="your.email@example.com"
-                            className="glass-strong"
+                            className="glass-strong placeholder:text-gray-400"
                             required
                           />
                         </div>
@@ -650,7 +650,7 @@ const SinglePage = () => {
                         <Input 
                           type="text" 
                           placeholder="Subject"
-                          className="glass-strong"
+                          className="glass-strong placeholder:text-gray-400"
                           required
                         />
                       </div>
@@ -660,7 +660,7 @@ const SinglePage = () => {
                         <Textarea 
                           placeholder="Your message..."
                           rows={8}
-                          className="glass-strong resize-none"
+                          className="glass-strong resize-none placeholder:text-gray-400"
                           required
                         />
                       </div>
