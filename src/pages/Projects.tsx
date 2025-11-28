@@ -93,15 +93,7 @@ const Projects = () => {
                       Code
                     </Button>
                     
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="glass hover:glow-secondary"
-                      onClick={() => window.open(project.demo, '_blank')}
-                    >
-                      <ExternalLink className="mr-2" size={16} />
-                      Live Demo
-                    </Button>
+                   
                   </div>
                 </Card>
               </motion.div>

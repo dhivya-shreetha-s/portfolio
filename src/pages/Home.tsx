@@ -8,8 +8,11 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   const handleDownloadCV = () => {
-    // Add your CV download logic here
-    console.log('Downloading CV...');
+    // Trigger download of resume stored in public folder
+    const link = document.createElement('a');
+    link.href = '/resume.pdf'; // Place your resume file in public/resume.pdf
+    link.download = 'Dhivya_Shreetha_S_Resume.pdf';
+    link.click();
   };
 
   return (
@@ -38,7 +41,7 @@ const Home = () => {
               animate={{ scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Your Name
+              Dhivya Shreetha S
             </motion.h1>
             
             <motion.h2 
@@ -47,7 +50,7 @@ const Home = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              Full Stack Developer | UI/UX Enthusiast
+              AI & Machine Learning Enthusiast 🤖 | Web Development Explorer 🌐
             </motion.h2>
             
             <motion.p 
@@ -56,7 +59,7 @@ const Home = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
             >
-              Crafting beautiful, functional, and user-centered digital experiences
+              Passionate about AI, machine learning, and web technologies—combining logic and creativity to build impactful solutions.
             </motion.p>
 
             <motion.div 

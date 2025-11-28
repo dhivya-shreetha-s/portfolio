@@ -14,10 +14,33 @@ const navItems = [
 ];
 
 const scrollToSection = (id: string) => {
+  console.log(`🔍 Attempting to scroll to: ${id}`);
+  
   const element = document.getElementById(id);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (!element) {
+    console.warn(`❌ Element with id '${id}' not found`);
+    console.log('📋 Available IDs on page:', Array.from(document.querySelectorAll('[id]')).map(el => el.id));
+    return;
   }
+
+  console.log(`✅ Element found:`, element);
+  console.log(`📏 Element position details:`, {
+    offsetTop: element.offsetTop,
+    getBoundingClientRect: element.getBoundingClientRect(),
+    scrollY: window.scrollY
+  });
+  
+  const currentScroll = window.pageYOffset;
+  const elementTop = element.getBoundingClientRect().top + currentScroll;
+  const offset = 80;
+  const targetScroll = elementTop - offset;
+
+  console.log(`🎯 Scrolling to position: ${targetScroll}`);
+  
+  window.scrollTo({
+    top: targetScroll,
+    behavior: 'smooth',
+  });
 };
 
 const Navigation = () => {
@@ -74,20 +97,31 @@ const Navigation = () => {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden overflow-hidden"
-            >
+  initial={{ opacity: 0, height: 0 }}
+  animate={{ opacity: 1, height: "auto" }}
+  exit={{ opacity: 0, height: 0 }}
+ className="
+  md:hidden overflow-hidden 
+  fixed top-16 left-0 w-full 
+  z-[9999] 
+  backdrop-blur-xl 
+  pointer-events-auto
+  bg-[rgba(255,250,240,0.95)] dark:bg-black/80
+"
+
+>
+
               <div className="flex flex-col gap-4 py-4">
                 {navItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => {
-                      scrollToSection(item.id);
-                      setIsOpen(false);
-                    }}
-                    className="text-foreground hover:text-primary transition-colors duration-300 text-left"
+  setIsOpen(false); // close menu first
+  setTimeout(() => scrollToSection(item.id), 350); // wait for animation end
+}}
+
+                   className="mobile-nav-text hover:text-primary transition-colors duration-300 text-left"
+
                   >
                     {item.name}
                   </button>

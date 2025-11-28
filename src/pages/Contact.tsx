@@ -1,60 +1,93 @@
-import { motion } from 'framer-motion';
-import PageTransition from '@/components/PageTransition';
-import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Mail, MapPin, Phone } from 'lucide-react';
-import { useState } from 'react';
-import { useToast } from '@/hooks/use-toast';
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import PageTransition from "@/components/PageTransition";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import emailjs from "@emailjs/browser";
 
 const contactInfo = [
   {
     icon: Mail,
-    label: 'Email',
-    value: 'your.email@example.com',
-    href: 'mailto:your.email@example.com',
+    label: "Email",
+    value: "your.email@example.com",
+    href: "mailto:your.email@example.com",
   },
   {
     icon: Phone,
-    label: 'Phone',
-    value: '+1 (555) 123-4567',
-    href: 'tel:+15551234567',
+    label: "Phone",
+    value: "+1 (555) 123-4567",
+    href: "tel:+15551234567",
   },
   {
     icon: MapPin,
-    label: 'Location',
-    value: 'Your City, Country',
+    label: "Location",
+    value: "Your City, Country",
     href: null,
   },
 ];
 
-const Contact = () => {
+export default function Contact() {
   const { toast } = useToast();
+
+  // initialize EmailJS ONCE
+  useEffect(() => {
+    emailjs.init("uHTkt5tPgGkS5gSWh"); // your public key
+  }, []);
+
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Create mailto link
-    const mailtoLink = `mailto:your.email@example.com?subject=Message from ${formData.name}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    )}`;
-    
-    window.location.href = mailtoLink;
-    
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  console.log("📨 Sending Email...");
+
+  try {
+    await emailjs.send(
+      "service_v93sjyp",     // Service ID
+      "template_ywwqpai",    // Template ID
+      {
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      }
+    );
+
+    console.log("✅ Email Sent Successfully!");
+
     toast({
-      title: 'Opening email client...',
-      description: 'Your default email application will open with the message.',
+      title: "Message Sent! 🎉",
+      description: "Thanks for reaching out! I will reply soon.",
     });
 
-    // Reset form
-    setFormData({ name: '', email: '', message: '' });
-  };
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+
+  } catch (error) {
+    console.error("❌ EmailJS Error:", error);
+
+    toast({
+      title: "Failed to send message",
+      description: "Please try again later.",
+      variant: "destructive",
+    });
+  }
+};
 
   return (
     <PageTransition>
@@ -69,7 +102,7 @@ const Contact = () => {
           </h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            {/* Contact Info */}
+            {/* Left Side – Contact Info */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -78,7 +111,7 @@ const Contact = () => {
               <h2 className="text-3xl font-bold mb-8 text-primary">
                 Contact Information
               </h2>
-              
+
               <div className="space-y-6">
                 {contactInfo.map((info, index) => (
                   <motion.div
@@ -88,37 +121,24 @@ const Contact = () => {
                     transition={{ delay: 0.4 + index * 0.1 }}
                   >
                     <Card className="glass-strong p-6 hover:glow-primary transition-all duration-300">
-                      {info.href ? (
-                        <a
-                          href={info.href}
-                          className="flex items-center gap-4"
-                        >
-                          <div className="p-3 glass rounded-lg">
-                            <info.icon className="text-primary" size={24} />
-                          </div>
-                          <div>
-                            <p className="text-sm text-muted-foreground">{info.label}</p>
-                            <p className="text-lg font-semibold">{info.value}</p>
-                          </div>
-                        </a>
-                      ) : (
-                        <div className="flex items-center gap-4">
-                          <div className="p-3 glass rounded-lg">
-                            <info.icon className="text-primary" size={24} />
-                          </div>
-                          <div>
-                            <p className="text-sm text-muted-foreground">{info.label}</p>
-                            <p className="text-lg font-semibold">{info.value}</p>
-                          </div>
+                      <div className="flex items-center gap-4">
+                        <div className="p-3 glass rounded-lg">
+                          <info.icon className="text-primary" size={24} />
                         </div>
-                      )}
+                        <div>
+                          <p className="text-sm text-muted-foreground">
+                            {info.label}
+                          </p>
+                          <p className="text-lg font-semibold">{info.value}</p>
+                        </div>
+                      </div>
                     </Card>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Contact Form */}
+            {/* Right – Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -128,56 +148,54 @@ const Contact = () => {
                 <h2 className="text-3xl font-bold mb-6 text-primary">
                   Send a Message
                 </h2>
-                
+
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-semibold mb-2">
-                      Name
-                    </label>
-                    <Input
-                      id="name"
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="glass"
-                      placeholder="Your name"
-                    />
-                  </div>
+                  <Input
+                    type="text"
+                    placeholder="Your name"
+                    className="input-gold glass"
+                    required
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                  />
 
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-semibold mb-2">
-                      Email
-                    </label>
-                    <Input
-                      id="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="glass"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
+                  <Input
+                    type="email"
+                    placeholder="your.email@example.com"
+                    className="input-gold glass"
+                    required
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                  />
 
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-semibold mb-2">
-                      Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      required
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="glass min-h-[150px]"
-                      placeholder="Your message..."
-                    />
-                  </div>
+                  <Input
+                    type="text"
+                    placeholder="Subject"
+                    className="input-gold glass"
+                    required
+                    value={formData.subject}
+                    onChange={(e) =>
+                      setFormData({ ...formData, subject: e.target.value })
+                    }
+                  />
+
+                  <Textarea
+                    placeholder="Your message..."
+                    className="input-gold glass min-h-[150px]"
+                    required
+                    value={formData.message}
+                    onChange={(e) =>
+                      setFormData({ ...formData, message: e.target.value })
+                    }
+                  />
 
                   <Button
                     type="submit"
-                    className="w-full glass-strong hover:glow-primary transition-all duration-300"
-                    size="lg"
+                    className="w-full bg-[#e0c36f] hover:bg-[#d4b457] text-black font-semibold rounded-md py-3 transition"
                   >
                     Send Message
                   </Button>
@@ -189,6 +207,4 @@ const Contact = () => {
       </div>
     </PageTransition>
   );
-};
-
-export default Contact;
+}
