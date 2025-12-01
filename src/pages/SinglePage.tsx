@@ -541,7 +541,7 @@ const SinglePage = () => {
                   <Card className="glass-strong overflow-hidden h-full hover:glow-primary transition-all duration-300 shadow-lg">
                     <div className="aspect-video overflow-hidden">
   <img
-    src={project.image}
+    src={getImagePath(project.image)}
     alt={project.title}
     className="w-full h-full object-cover"
   />
@@ -606,7 +606,7 @@ const SinglePage = () => {
             <Card className="glass-strong p-6 h-full hover:glow-primary transition-all duration-300 cursor-pointer shadow-lg">
              <div className="aspect-video overflow-hidden rounded-lg mb-4">
   <img 
-    src={cert.image}
+    src={getImagePath(cert.image)}
     alt={cert.title}
     className="w-full h-full object-cover"
   />
@@ -650,7 +650,7 @@ const SinglePage = () => {
               <Card className="glass-strong p-6 h-full hover:glow-primary transition-all duration-300 cursor-pointer shadow-lg">
                 <div className="aspect-video overflow-hidden rounded-lg mb-4">
   <img 
-    src={cert.image}
+    src={getImagePath(cert.image)}
     alt={cert.title}
     className="w-full h-full object-cover"
   />
