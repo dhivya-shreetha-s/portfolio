@@ -23,6 +23,9 @@ import { useToast } from "@/hooks/use-toast";
 import emailjs from "@emailjs/browser";
 import Scene3D from "@/components/Scene3D";
 
+// Helper function to get image path with base URL
+const getImagePath = (path: string) => `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
+
 const skillCategories = [
   {
     title: 'AI & Machine Learning',
