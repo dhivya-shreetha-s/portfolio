@@ -332,7 +332,7 @@ const SinglePage = () => {
   className="glass-strong hover:glow-secondary transition-all duration-300 text-lg px-8 py-6"
   onClick={() => {
     const link = document.createElement('a');
-    link.href = '/resume.pdf';
+    link.href = getImagePath('/resume.pdf');
     link.download = 'Dhivya_Shreetha_S_Resume.pdf';
     link.click();
   }}
