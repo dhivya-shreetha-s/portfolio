@@ -23,6 +23,9 @@ import { useToast } from "@/hooks/use-toast";
 import emailjs from "@emailjs/browser";
 import Scene3D from "@/components/Scene3D";
 
+// Helper function to get image path with base URL
+const getImagePath = (path: string) => `${import.meta.env.BASE_URL}${path.startsWith('/') ? path.slice(1) : path}`;
+
 const skillCategories = [
   {
     title: 'AI & Machine Learning',
@@ -68,7 +71,7 @@ const projects = [
     "A secure waste management platform with login 🔐, OTP verification 📩, user dashboard 📊, and JWT-based authentication built using React, TypeScript, and Node.js.",
   tags: ["React", "TypeScript", "Node.js", "Express", "JWT"],
   github: "https://github.com/dhivya-shreetha-s/Waste_Zero",
-  image: "/wastezero.png",
+  image: getImagePath("/wastezero.png"),
 },
   {
     title: "Waste Classification",
@@ -76,7 +79,7 @@ const projects = [
       "A machine learning model that classifies waste into degradable 🌱 and non-degradable 🗑️ categories using image classification to support smarter waste management.",
     tags: ["TensorFlow", "Scikit-Learn", "Python"],
     github: "https://github.com/dhivya-shreetha-s/Waste_Classification",
-    image: "/waste-classification.png",
+    image: getImagePath("/waste-classification.png"),
   },
 
   {
@@ -85,7 +88,7 @@ const projects = [
       "A Streamlit-based NLP app that predicts movie review sentiment as Positive 👍 or Negative 👎 using Logistic Regression and Naive Bayes with instant real-time results.",
     tags: ["NLP", "Python", "Streamlit"],
     github: "https://github.com/dhivya-shreetha-s/Movie_Sentiment_Analyzer",
-    image: "/movie-sentiment.png",
+    image: getImagePath("/movie-sentiment.png"),
   },
 
 
@@ -97,40 +100,40 @@ const projects = [
       "A modern hotel booking platform built with React ⚛️, Tailwind 🎨 and Supabase 🗄️ featuring room browsing, reservation management, and admin dashboard.",
     tags: ["React", "Tailwind CSS", "Supabase"],
     github: "https://github.com/dhivya-shreetha-s/room-rent-project",
-    image: "/hotel-reservation.png",
+    image: getImagePath("/hotel-reservation.png"),
   },
 ];
 
 
 const certificatesTop10 = [
-  { title: "MERIT Certificate", issuer: "TalentSprint", year: "2025", image: "/cert-merit.png" },
-  { title: "AICTE Internship Certificate", issuer: "AICTE", year: "2025", image: "/cert-aicte.png" },
-  { title: "Pantech Internship Certificate", issuer: "Pantech eLearning , Msme", year: "2025", image: "/cert-pantech.png" },
-  { title: "Mental Health and Wellbeing", issuer: "NPTEL", year: "2025", image: "/cert-mental-health.png" },
-  { title: "Python for Data Science, AI & Development", issuer: "IBM", year: "2025", image: "/cert-python-datascience.png" },
-  { title: "GenAI in Data Analytics", issuer: "Meta", year: "2025", image: "/cert-genai-analytics.png" },
-  { title: "Machine Learning with ChatGPT – Image Classification", issuer: "Coursera", year: "2025", image: "/cert-ml-chatgpt.png" },
-  { title: "Build AI Apps with ChatGPT, DALL-E & GPT-4", issuer: "Scrimba", year: "2025", image: "/cert-build-ai.png" },
-  { title: "TechA Linux Programming Foundation", issuer: "Infosys", year: "2025", image: "/cert-techa-linux.png" },
-  { title: "Angular Full Stack Development", issuer: "Infosys", year: "2025", image: "/cert-angular-fullstack.png" },
-   { title: "Linux Shell Scripting Solutions", issuer: "Infosys", year: "2025", image: "/cert-linux-shell.png" },
-  { title: "Linux for Beginners", issuer: "Infosys", year: "2025", image: "/cert-linux-beginners.png" },
+  { title: "MERIT Certificate", issuer: "TalentSprint", year: "2025", image: getImagePath("/cert-merit.png") },
+  { title: "AICTE Internship Certificate", issuer: "AICTE", year: "2025", image: getImagePath("/cert-aicte.png") },
+  { title: "Pantech Internship Certificate", issuer: "Pantech eLearning , Msme", year: "2025", image: getImagePath("/cert-pantech.png") },
+  { title: "Mental Health and Wellbeing", issuer: "NPTEL", year: "2025", image: getImagePath("/cert-mental-health.png") },
+  { title: "Python for Data Science, AI & Development", issuer: "IBM", year: "2025", image: getImagePath("/cert-python-datascience.png") },
+  { title: "GenAI in Data Analytics", issuer: "Meta", year: "2025", image: getImagePath("/cert-genai-analytics.png") },
+  { title: "Machine Learning with ChatGPT – Image Classification", issuer: "Coursera", year: "2025", image: getImagePath("/cert-ml-chatgpt.png") },
+  { title: "Build AI Apps with ChatGPT, DALL-E & GPT-4", issuer: "Scrimba", year: "2025", image: getImagePath("/cert-build-ai.png") },
+  { title: "TechA Linux Programming Foundation", issuer: "Infosys", year: "2025", image: getImagePath("/cert-techa-linux.png") },
+  { title: "Angular Full Stack Development", issuer: "Infosys", year: "2025", image: getImagePath("/cert-angular-fullstack.png") },
+   { title: "Linux Shell Scripting Solutions", issuer: "Infosys", year: "2025", image: getImagePath("/cert-linux-shell.png") },
+  { title: "Linux for Beginners", issuer: "Infosys", year: "2025", image: getImagePath("/cert-linux-beginners.png") },
 ];
 
 
 const certificatesOthers = [
   
  
-  { title: "Operating Systems", issuer: "NPTEL", year: "2025", image: "/cert-operating-systems.png" },
-  { title: "E-Business", issuer: "NPTEL", year: "2025", image: "/cert-e-business.png" },
-  { title: "Enhancing Soft Skills and Personality", issuer: "NPTEL", year: "2025", image: "/cert-softskills.png" },
-  { title: "Linux Bash Scripting Training", issuer: "Infosys", year: "2025", image: "/cert-linux-bash.png" },
-  { title: "Introduction to Software Engineering", issuer: "Coursera", year: "2025", image: "/cert-software-engineering.png" },
-  { title: "Data Structures & Algorithms Using Python – Part 1", issuer: "Infosys", year: "2025", image: "/cert-dsa1.png" },
-  { title: "Data Structures & Algorithms Using Python – Part 2", issuer: "Infosys", year: "2025", image: "/cert-dsa2.png" },
-  { title: "Theervathon Certificate", issuer: "Startup TN", year: "2025", image: "/cert-theervathon.png" },
-  { title: "Introduction to Cybersecurity Certification", issuer: "Cisco", year: "2025", image: "/cert-cisco-cyber.png" },
-  { title: "Python Essentials 1", issuer: "Cisco", year: "2025", image: "/cert-python-essentials.png" },
+  { title: "Operating Systems", issuer: "NPTEL", year: "2025", image: getImagePath("/cert-operating-systems.png") },
+  { title: "E-Business", issuer: "NPTEL", year: "2025", image: getImagePath("/cert-e-business.png") },
+  { title: "Enhancing Soft Skills and Personality", issuer: "NPTEL", year: "2025", image: getImagePath("/cert-softskills.png") },
+  { title: "Linux Bash Scripting Training", issuer: "Infosys", year: "2025", image: getImagePath("/cert-linux-bash.png") },
+  { title: "Introduction to Software Engineering", issuer: "Coursera", year: "2025", image: getImagePath("/cert-software-engineering.png") },
+  { title: "Data Structures & Algorithms Using Python – Part 1", issuer: "Infosys", year: "2025", image: getImagePath("/cert-dsa1.png") },
+  { title: "Data Structures & Algorithms Using Python – Part 2", issuer: "Infosys", year: "2025", image: getImagePath("/cert-dsa2.png") },
+  { title: "Theervathon Certificate", issuer: "Startup TN", year: "2025", image: getImagePath("/cert-theervathon.png") },
+  { title: "Introduction to Cybersecurity Certification", issuer: "Cisco", year: "2025", image: getImagePath("/cert-cisco-cyber.png") },
+  { title: "Python Essentials 1", issuer: "Cisco", year: "2025", image: getImagePath("/cert-python-essentials.png") },
 ];
 
 
@@ -329,7 +332,7 @@ const SinglePage = () => {
   className="glass-strong hover:glow-secondary transition-all duration-300 text-lg px-8 py-6"
   onClick={() => {
     const link = document.createElement('a');
-    link.href = '/resume.pdf';
+    link.href = getImagePath('/resume.pdf');
     link.download = 'Dhivya_Shreetha_S_Resume.pdf';
     link.click();
   }}
@@ -350,7 +353,7 @@ const SinglePage = () => {
       >
         <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
           <img
-            src="/profile.png"
+            src={getImagePath("/profile.png")}
             alt="Profile"
             className="w-full h-full rounded-full object-cover shadow-lg border-4 border-primary/30"
           />
