@@ -148,7 +148,7 @@ const education = [
     institution: "Aggarwal Matriculation Higher Secondary School",
     year: "2023 – 2024",
     description:
-      "Completed Higher Secondary with 77%, specializing in Biology and Mathematics.",
+      "Completed Higher Secondary with 0%, specializing in Biology and Mathematics.",
   },
 ];
 
