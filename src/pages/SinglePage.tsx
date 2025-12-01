@@ -353,7 +353,7 @@ const SinglePage = () => {
       >
         <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
           <img
-            src="/profile.png"
+            src={getImagePath("/profile.png")}
             alt="Profile"
             className="w-full h-full rounded-full object-cover shadow-lg border-4 border-primary/30"
           />
