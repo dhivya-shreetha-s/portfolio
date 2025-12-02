@@ -107,6 +107,7 @@ const projects = [
 
 const certificatesTop10 = [
   { title: "MERIT Certificate", issuer: "TalentSprint", year: "2025", image: "/cert-merit.png" },
+  { title: "WasteZero Smart Waste Pickup & Recycling Internship", issuer: "Infosys Springboard", year: "2025", image: "/cert-wastezero.png" },
   { title: "AICTE Internship Certificate", issuer: "AICTE", year: "2025", image: "/cert-aicte.png" },
   { title: "Pantech Internship Certificate", issuer: "Pantech eLearning , Msme", year: "2025", image: "/cert-pantech.png" },
   { title: "Mental Health and Wellbeing", issuer: "NPTEL", year: "2025", image: "/cert-mental-health.png" },
@@ -116,14 +117,13 @@ const certificatesTop10 = [
   { title: "Build AI Apps with ChatGPT, DALL-E & GPT-4", issuer: "Scrimba", year: "2025", image: "/cert-build-ai.png" },
   { title: "TechA Linux Programming Foundation", issuer: "Infosys", year: "2025", image: "/cert-techa-linux.png" },
   { title: "Angular Full Stack Development", issuer: "Infosys", year: "2025", image: "/cert-angular-fullstack.png" },
-   { title: "Linux Shell Scripting Solutions", issuer: "Infosys", year: "2025", image: "/cert-linux-shell.png" },
-  { title: "Linux for Beginners", issuer: "Infosys", year: "2025", image: "/cert-linux-beginners.png" },
-];
+  { title: "Mentorship 2025 Participation Certificate", issuer: "Future Tech Corporate Solutions", year: "2025", image: "/cert-mentorship.png" },
+  ];
 
 
 const certificatesOthers = [
-  
- 
+  { title: "Linux Shell Scripting Solutions", issuer: "Infosys", year: "2025", image: "/cert-linux-shell.png" },
+  { title: "Linux for Beginners", issuer: "Infosys", year: "2025", image: "/cert-linux-beginners.png" },
   { title: "Operating Systems", issuer: "NPTEL", year: "2025", image: "/cert-operating-systems.png" },
   { title: "E-Business", issuer: "NPTEL", year: "2025", image: "/cert-e-business.png" },
   { title: "Enhancing Soft Skills and Personality", issuer: "NPTEL", year: "2025", image: "/cert-softskills.png" },
