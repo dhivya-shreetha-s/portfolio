@@ -334,7 +334,12 @@ All colors MUST be HSL.
 }
 
 
-
+@media screen and (max-width: 1000px) {
+  .herosectionimage {
+   margin-top: 100px;
+  }
+  
+}
 
 
 

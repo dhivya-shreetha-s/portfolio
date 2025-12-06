@@ -351,7 +351,7 @@ const SinglePage = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
-        <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+        <div className="herosectionimage relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
           <img
             src={getImagePath("/profile.png")}
             alt="Profile"
